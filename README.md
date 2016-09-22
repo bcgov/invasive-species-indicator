@@ -49,7 +49,7 @@ library(devtools)
 install_github("bcgov/envreportutils")
 install_github("bcgov/bcmaps")
 ```
-[Mapshaper](https://github.com/mbloch/mapshaper/wiki/Command-Reference) is used to simplify polygons for display results. Mapshaper is a Node library, so you need to have [Node](https://nodejs.org/download/) installed first, then install mapshaper on the command line with: 'npm install -g mapshaper'.
+[Mapshaper](https://github.com/mbloch/mapshaper)  is used to simplify polygons for display of results. Mapshaper is a Node library, so you need to have [Node](https://nodejs.org/download/) installed first, then install mapshaper on the command line with: ['npm install -g mapshaper'](https://github.com/mbloch/mapshaper/wiki/Command-Reference).
 
 
 ### Getting Help or Reporting an Issue
