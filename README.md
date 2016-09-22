@@ -4,8 +4,6 @@
 ---
 
 
----
-
 # Status of Invasive Species in B.C.
 
 A set of R scripts to populate an indicator on status of invasive species in B.C. These scripts reproduce the graphs and maps published on [Environmental Reporting BC](http://www.env.gov.bc.ca/soe/indicators/plants-and-animals/invasive-species.html) in September 2015.
