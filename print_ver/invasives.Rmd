@@ -1,0 +1,282 @@
+---
+topic: "plants-and-animals"
+title: "Status of Invasive Species in B.C."
+output: envreportbc::print_ver
+---
+
+```{r set-options, echo=FALSE, cache = FALSE, warning=FALSE, message=FALSE}
+#load libraries for script
+library(dplyr) #data munging
+library(magrittr) #pipe
+library(ggplot2) #plotting
+library(scales) # plotting
+library(envreportutils) #multiplot function
+library(rphylopic) #for black rabbit image
+library(knitr) #for knitting to PDF
+library(extrafont) #for embed_fonts function
+library(rgeos) #for mapping
+library(maptools)
+
+opts_chunk$set(echo = FALSE, cache = FALSE, warning = FALSE, message = FALSE, 
+               error = FALSE)
+
+opts_knit$set(root.dir = "c:/_dev/invasives/")
+
+## Species summary
+read_chunk("../species_counts.R")
+
+## Plants
+load("../tmp/plant_analyses.rda")
+read_chunk("../plants/03_output.R")
+
+## Aquatics
+load("../tmp/aquatics_analyses.rda")
+read_chunk("../aquatics/04_output.R")
+
+font_reset <- theme(text = element_text(family = NULL))
+
+```
+
+
+
+Invasive species are alien or exotic plants, animals and other organisms
+that have been introduced into a natural environment where they are not
+normally found and where they negatively impact the environment, people,
+or the economy. For example, invasive species can threaten native species
+and damage habitats, reduce crop yields and forage for grazing, damage
+recreational and commmercial fisheries, and pose helath risks to people.
+This indicator reports on the status of invasive species in British
+Columbia.
+
+-   Almost a thousand alien plant and animal species are known to have
+    established in natural environments in B.C. Plants are
+    overwhelmingly the most common group of established alien species in
+    the province.
+-   Not all alien species cause harm and are considered invasive,
+    however the degree of potential impact is often not fully
+    understood.
+-   Aquatic invasive species have been detected in almost all regions of
+    the province. Invasive freshwater fish species in particular have
+    expanded in both number and geographic area since the early 1900s.
+-   Of the over 800 alien plant species established in the province,
+    over 175 are known to be invasive and occur at more than 117,000
+    locations across the province.
+-   Most invasive species are unintentionally introduced by human
+    activities, consequently there are more known invasive species in
+    areas of the province where there are more people.
+
+One of B.C.'s proactive approaches to managing invasive species is the
+[BC Early Detection Rapid Response
+(EDRR)](https://www.for.gov.bc.ca/hra/invasive-species/edrr.htm) program
+which focusses on detecting and preventing establishment of new invasive
+species. There are a few well known stories from the past of intentional
+introductions of invasive species such as [scotch
+broom](http://ojs.library.ubc.ca/index.php/bcstudies/article/viewFile/345/1875),
+[smallmouth bass, and yellow
+perch](http://ibis.geog.ubc.ca/biodiversity/efauna/AlienSpeciesinBritishColumbiaHistoricalRecords.html#FishFrogs),
+but with public education and programs like
+[EDRR](https://www.for.gov.bc.ca/hra/invasive-species/edrr.htm), these
+will hopefully be a thing of the past.
+
+### Number of Alien Species in B.C.
+
+-   As of 2014, 978 alien species are known to have established in B.C. Most of 
+    those are plants (86.8%) and 8.5% are invertebrates. The number of alien 
+    insects reported are limited to those from groups that are presently listed 
+    by the [B.C. Conservation Data Centre](http://www.env.gov.bc.ca/cdc/) 
+    (dragonflies, tiger beetles, butterflies and grasshoppers).
+-   Birds, reptiles, amphibians, fish and mammals make up 4.6% of the
+    known established alien species, including the familiar eastern grey
+    squirrel and American bullfrog. The remainder is one fungus species
+    (0.1%).
+    
+```{r species-counts-pre}
+```
+
+```{r alien.totals, fig.height=5.5, fig.width=12}
+```
+
+\\
+\begin{center}
+\includegraphics{images/squirrel_ds.jpg}\\*
+Eastern grey squirrel (\textit{Sciurus carolinensis})\\*
+Photo credit: Dominique Sigg
+\end{center}
+\newpage
+
+### Number and Distribution of Aquatic Invasive Species in B.C.
+
+-   Aquatic invasive species have been detected in almost all ecological
+    drainage units (EDUs) in the province. Aquatic invasive plants are
+    the most widespread and numerous group, with 101 species occurring
+    in 27 of 36 EDUs.
+-   There are only two aquatic invasive reptile species in the province,
+    and both are turtles: the red-eared (pond) slider, a popular pet
+    turtle that is often released into the wild; and the eastern
+    snapping turtle.
+
+```{r aquatics-graphs}
+
+```
+
+
+```{r fig.width=8, fig.height=8}
+library(ggplot2)
+chart_facet_map + theme(legend.position = "bottom", 
+                        legend.key.height = unit(0.8, "cm"), 
+                        legend.key.width = unit(2.5, "cm")) +
+  font_reset
+```
+
+\begin{center}
+\includegraphics{images/bullfrog_lr.jpg}\\*
+American bullfrog (\textit{Lithobates catesbeianus})\\*
+Photo credit: Leah Ramsay
+\end{center}
+
+-   Invasive freshwater fish species have expanded in number and
+    geographic range since the early 1900s. They have been found in 25
+    of 36 EDUs, with 30 different invasive freshwater fish species
+    detected in the province.
+-   As with many long-term observational data, some of the observed
+    increases in invasive freshwater fish may be due to increased survey
+    effort over time.
+
+```{r fig.width=8, fig.height=8}
+chart_year_map + theme(legend.position = "bottom", 
+                       legend.key.height = unit(0.8, "cm"), 
+                       legend.key.width = unit(2.5, "cm")) +
+  font_reset
+```
+
+
+```{r}
+chart_prov_fish_trend + font_reset
+```
+
+
+### Number and Distribution of Invasive Plant Species in B.C.
+
+-   As of 2014, there are over 117,000 locations with recorded invasive
+    plant species in B.C.
+-   Habitats, or [biogeoclimatic
+    zones](https://www.for.gov.bc.ca/hre/becweb/biogeoclimatic%20zones),
+    with the most invasive plant sites are the Interior Douglas-fir,
+    Coastal Western Hemlock, Interior Cedar - Hemlock, and the
+    Sub-Boreal Spruce zones, all of which have more than 10,000 known
+    invasive plant locations. High elevation areas have the fewest
+    invasive plant location records (12 or less each).
+-   There are a total of 175 recorded invasive plants species in B.C.
+    The most common invasive plant species are spotted knapweed, Canada
+    thistle, common tansy and oxeye daisy, with more than 10,000 known
+    locations for each. However, many of the 175 species are much less
+    abundant &mdash; for example 36 species are known to occur at 10 or fewer
+    locations in the province at this time.
+
+```{r plants-graphs}
+```
+
+```{r fig.height = 4}
+sitesmap + ggtitle("Number of Known Invasive Plant Locations") + 
+  theme(legend.title = element_blank(), 
+        legend.position = "right", 
+        legend.key.height = unit(4, "cm"),
+        plot.margin = unit(c(0,0,0,0),"mm")) +
+  font_reset
+  
+sppmap + ggtitle("Number of Established Invasive Plant Species") + 
+  theme(legend.title = element_blank(), 
+        legend.position = "right", 
+        legend.key.height = unit(4, "cm"),
+        plot.margin = unit(c(0,0,0,0),"mm")) +
+  font_reset
+```
+
+\begin{center}
+\includegraphics[width=76mm]{images/Giant_hogweed_FLNRO_sm.jpg}\\*
+Giant hogweed (\textit{Heracleum mantegazzianum})
+\end{center}
+
+### About the Data Sources
+
+The data summarized for this indicator &mdash; available in the Data section
+below &mdash; are from three different B.C. government programs:
+
+-   *Number of Alien Species* data are from the [BC Conservation Data
+    Centre (CDC)](http://www.env.gov.bc.ca/atrisk/toolintro.html).
+    The total number of alien species for each species group is the sum
+    of all known and *established* exotic subtaxa originating from
+    outside of B.C. as of 2014. Subtaxa include species, subspecies, populations
+    and varieties. The number of alien species reported by the CDC only includes
+    information from the better known groups of plants and animals and is
+    therefore a minimum estimate. This is particularly true for insects, as only
+    species groups for which the CDC has comprehensive lists (dragonflies, tiger
+    beetles, butterflies and grasshoppers) are tracked and reported. As
+    invertebrate groups are added to the CDC lists, these will be incorporated
+    in future updates to this indicator.
+-   *Number and Distribution of Aquatic Invasive Species* data are from
+    the [Aquatic Invasive Species
+    Program](https://www.for.gov.bc.ca/hra/invasive-species/mussels.htm).
+    The data are a subset of the CDC exotic species list as it only
+    includes aquatic and semi-aquatic taxonomic groups and alien or
+    exotic aquatic species that are considered invasive. However, this
+    dataset also includes all aquatic invasive species records &mdash;
+    established species, species with single or only a few occurance
+    records, and species that are native to one part of B.C. but
+    invasive in another part of the province.
+-   *Number and Distribution of Invasive Plant Species* data are from
+    the [Invasive Alien Plant Program
+    Application](https://www.for.gov.bc.ca/hra/Plants/application.htm)
+    administered by the [B.C. Invasive Plant
+    Program](https://www.for.gov.bc.ca/hra/Plants/index.htm). The data
+    are a subset of the CDC exotic plant species list as it only
+    includes alien plants that are considered invasive and that have
+    occurrence records in B.C. Information on management activities for
+    many invasive plants are also contained in this database.
+
+### References and Other Useful Links
+
+[**Least Wanted!** Early Detection-Rapid Response Program for
+B.C.](https://www.for.gov.bc.ca/hra/invasive-species/edrr.htm)
+
+Click [HERE](http://www.reportinvasives.ca/) to report an invasive
+species in B.C.
+
+For more information on invasive species you can visit the [B.C.
+government Inter-Ministry Invasive Species Working
+Group](http://www.for.gov.bc.ca/hra/invasive-species/index.htm)\
+ and the [B.C. Invasive Plant
+Program](http://www.for.gov.bc.ca/hra/Plants/index.htm)
+
+[Invasive Species Council of British Columbia
+(ISCBC)](http://www.bcinvasives.ca/)
+
+### Data
+
+\*By accessing these datasets, you agree to the license associated with
+each file, as indicated in parentheses below.
+
+-   [BC Species and Ecosystems Conservation Status
+    Information](http://catalogue.data.gov.bc.ca/dataset/bc-species-and-ecosystems-conservation-status-information)
+    (License: [B.C.
+    OGL](http://www.data.gov.bc.ca/local/dbc/docs/license/OGL-vbc2.0.pdf))
+-   [Aquatic Invasive Species of British
+    Columbia](http://catalogue.data.gov.bc.ca/dataset/aquatic-invasive-species-of-british-columbia)
+    (License: [B.C.
+    OGL](http://www.data.gov.bc.ca/local/dbc/docs/license/OGL-vbc2.0.pdf))
+-   [EAUBC Ecological Drainage
+    Units](http://catalogue.data.gov.bc.ca/dataset/eaubc-ecological-drainage-units)
+    (License: [B.C. Crown
+    Copyright](http://www2.gov.bc.ca/gov/admin/copyright.page))
+-   [B.C. Invasive Alien Plant
+    Site](http://catalogue.data.gov.bc.ca/dataset/invasive-alien-plant-site)
+    (License: [B.C. Crown
+    Copyright](http://www2.gov.bc.ca/gov/admin/copyright.page))
+-   [Biogeoclimatic Ecosystem Classification (BEC)
+    Map](http://catalogue.data.gov.bc.ca/dataset/biogeoclimatic-ecosystem-classification-bec-map)
+    (License: [B.C.
+    OGL](http://www.data.gov.bc.ca/local/dbc/docs/license/OGL-vbc2.0.pdf))
+
+Published and available online at Envronmental Reporting BC (September 2015): http://www.env.gov.bc.ca/soe/indicators/plants-and-animals/invasive_species.html
+
+Email correspondence to: envreportbc@gov.bc.ca
