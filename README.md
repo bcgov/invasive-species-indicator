@@ -58,7 +58,6 @@ To report bugs/issues/feature requests, please file an [issue](https://github.co
 
 If you would like to contribute, please see our [CONTRIBUTING](CONTRIBUTING.md) guidelines.
 
-### License
 
 ### License
 
