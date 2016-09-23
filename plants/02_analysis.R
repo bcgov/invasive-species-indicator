@@ -26,6 +26,7 @@ plantsites <- readRDS("tmp/plant.sites.rds")
 
 ## Load additional file with MAP_LABEL values for several sites where there were
 ## more than 16 species, which were truncated in the original file
+## Contact EnvReportBC for this file (EnvReportBC@gov.bc.ca)
 
 full_map_labels <- read.csv("Z:/plants_animals/invasives/2015/iapp/IAPP_sites_16_plus_spp_2015-07-15.csv", 
                             stringsAsFactors = FALSE, check.names = FALSE)
