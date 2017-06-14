@@ -50,7 +50,7 @@ install_github("bcgov/bcmaps")
 
 ### Getting Help or Reporting an Issue
 
-To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/<repo-name>/issues/).
+To report bugs/issues/feature requests, please file an [issue](https://github.com/bcgov/invasive-species-indicator/issues).
 
 ### How to Contribute
 
