@@ -17,7 +17,7 @@ The data used for the indicator is available from the [BC Data Catalogue](https:
 - [Invasive Alien Plant Site](https://catalogue.data.gov.bc.ca/dataset/10ecf9ad-1555-4043-834a-f5d24a506d59) is available under the [Access Only](http://www2.gov.bc.ca/gov/content?id=1AAACC9C65754E4D89A118B875E0FBDA) license.
 
 
-####Code
+#### Code
 There are 3 sets of R scripts that are required for the indicator. The 'aquatics' and 'plants' scripts need to be run in order:
 
 (1) species_counts.R
