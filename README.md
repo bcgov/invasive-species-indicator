@@ -12,9 +12,9 @@ A set of R scripts to populate an indicator on status of invasive species in B.C
 The data used for the indicator is available from the [BC Data Catalogue](https://catalogue.data.gov.bc.ca/dataset?download_audience=Public):
 
 - [BC Species and Ecosystems Conservation Status Information](https://catalogue.data.gov.bc.ca/dataset/d3651b8c-f560-48f7-a34e-26b0afc77d84) is available under the
-[Open Government License - BC](http://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/databc/open-data/open-government-license-bc)
-- [Aquatic Invasive Species of British Columbia](https://catalogue.data.gov.bc.ca/dataset/d9613096-b2fe-43b4-9be1-d82a3b805082) is available under the [Open Government License - BC](http://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/databc/open-data/open-government-license-bc)
-- [Invasive Alien Plant Site](https://catalogue.data.gov.bc.ca/dataset/10ecf9ad-1555-4043-834a-f5d24a506d59) is available under the [Access Only](http://www2.gov.bc.ca/gov/content?id=1AAACC9C65754E4D89A118B875E0FBDA) license.
+[Open Government Licence - British Columbia](http://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/databc/open-data/open-government-license-bc)
+- [Aquatic Invasive Species of British Columbia](https://catalogue.data.gov.bc.ca/dataset/d9613096-b2fe-43b4-9be1-d82a3b805082) is available under the [Open Government Licence - British Columbia](http://www2.gov.bc.ca/gov/content/governments/about-the-bc-government/databc/open-data/open-government-license-bc)
+- [Invasive Alien Plant Site](https://catalogue.data.gov.bc.ca/dataset/10ecf9ad-1555-4043-834a-f5d24a506d59) is available under the [Access Only](http://www2.gov.bc.ca/gov/content?id=1AAACC9C65754E4D89A118B875E0FBDA) licence.
 
 
 #### Code
