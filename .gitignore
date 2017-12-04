@@ -9,3 +9,4 @@
 /aquatics/data
 *.html
 /print_ver/images
+.DS_Store
