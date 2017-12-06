@@ -16,7 +16,7 @@
 ## Data provided under the BC Crown Copyright License
 ## http://www2.gov.bc.ca/gov/content/home/copyright
 
-plants_zip <- "Z:/plants_animals/invasives/2015/iapp/IAP_SIT_PG.zip" #match local data dir
+plants_zip <- "~/soe_data/plants_animals/invasives/2015/iapp/IAP_SIT_PG.zip" #match local data dir
 unzip(plants_zip, exdir = "plants/data")
 
 
@@ -43,19 +43,25 @@ if (!file.exists(plant_site_rds)) {
 ## Data provided under the BC Crown Copyright License
 ## http://www2.gov.bc.ca/gov/content/home/copyright
 
-bec_zip <- "Z:/plants_animals/invasives/2015/dbc_biozones/BEC_POLY.zip"  #match local data dir
+bec_zip <- "~/soe_data/plants_animals/invasives/2015/dbc_biozones/BEC_POLY.zip"  #match local data dir
 unzip(bec_zip, exdir = "plants/data")
 
 
-## Use mapshaper and to clip and explode full BEC shapefile polygons. 
+## Use mapshaper and to clip and explode full BEC shapefile polygons.
+## Not using `rmapshaper` because the BEC layer is too big.
 ## Must explode multipart polygons or simplify will remove some.
 ## It is a Node library, so you need to have 
 ## Node installed to use it: https://nodejs.org/download/
 ## Then install mapshaper on the command line with: 'npm install -g mapshaper'
 ## https://github.com/mbloch/mapshaper/wiki/Command-Reference
+## Can use homebrew to install on a Mac (brew install node npm install -g mapshaper)
 
 #devtools::install_github("bcgov/bcmaps")
 library(bcmaps)
+library(sp)
+
+bc_bound_hres <- bc_bound_hres(class = "sp")
+
 writeOGR(bc_bound_hres, "plants/data", "bc_bound", "ESRI Shapefile")
 system("mapshaper plants/data/BEC_POLY/BEC_POLY_polygon.shp -clip plants/data/bc_bound.shp -o plants/data/bgc_clip.shp force")
 system("mapshaper plants/data/bgc_clip.shp -explode -o plants/data/bgc_clip_explode.shp force")
