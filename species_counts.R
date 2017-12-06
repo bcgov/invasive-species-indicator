@@ -116,15 +116,18 @@ exotics.plants.plot <- ggplot(data=exotics.subset.plants,
   geom_bar(stat= "count", alpha=.7) +
   geom_text(data=plant.totals, aes(y=count, label=count, vjust=-.5)) +
   ggtitle("Plants") +
-  xlab ("\n") + ylab ("Number of Species") +
+  ylab ("Number of Species") +
+  labs(caption = "\n\n") +
   scale_y_continuous(limits = c(0,1000), breaks=seq(0, 1000, 200),
                      expand=c(0,0)) +
   scale_fill_manual(values= plantPal, guide = FALSE) +
   scale_x_discrete(labels="All Plants\n") +
   theme_soe() +
   theme(panel.grid.major.x = (element_blank()),
-        axis.text = element_text(size = 12),
-        axis.title.y = element_text(size = 12))
+        axis.text = element_text(size = 14),
+        plot.title = element_text(size = 14, hjust = .5),
+        axis.title.y = element_text(size = 14),
+        axis.title.x = element_blank())
 
 ## fungus bar chart
 fungusPal <- "#ff7f00"
@@ -133,14 +136,16 @@ exotics.fungus.plot <- ggplot(data=exotics.subset.fungus,
                               aes(x = Kingdom, fill = Kingdom)) + 
   geom_bar(stat= "count", alpha=.7) +
   geom_text(data=fungus.totals, aes(y=count, label=count, vjust=-.5)) +
-  ggtitle("Fungi") + xlab ("\n") + 
+  ggtitle("Fungi") + 
+  labs(caption = "\n\n") +
   scale_y_continuous(limits = c(0,10), breaks=seq(0, 10, 2),
                      expand=c(0,0)) +
   scale_fill_manual(values=fungusPal, guide = FALSE) +
   scale_x_discrete(labels="Fungus\n") +
   theme_soe() +
-  theme(axis.text = element_text(size = 12),
-        axis.title.y = element_blank(),
+  theme(axis.text = element_text(size = 14),
+        plot.title = element_text(size = 14, hjust = .5),
+        axis.title = element_blank(),
         panel.grid.major.x = element_blank())
 
 
@@ -162,17 +167,20 @@ exotics.animals.plot <- ggplot(data=exotics.subset.animals,
                                aes(x = Graph.Name, fill = Name.Category)) + 
   geom_bar(stat= "count", alpha=.7) +
   geom_text(data=animal.totals, aes(y=count, label=count, vjust=-.5)) +
-  ggtitle("Animals") + xlab ("\n*Note the different y-axis scales for the plants, animals and fungi charts above") + 
+  ggtitle("Animals") + 
+  labs(caption = "\n*Note the different y-axis scales for the plants, animals and fungi charts above") + 
   scale_y_continuous(limits = c(0,100), breaks=seq(0, 100, 20),
                      expand=c(0,0)) +
   scale_fill_manual(values=animalPal,
-                    labels=c("Invertebrates                        ",
+                    labels=c("Invertebrates",
                              "Vertebrates")) +
   theme_soe() +
-  theme(axis.text = element_text(size = 12),
-        legend.text = element_text(size = 12),                         
+  theme(axis.text = element_text(size = 14),
+        plot.title = element_text(size = 14, hjust = .5),
+        plot.caption = element_text(size = 14),
+        legend.text = element_text(size = 14),                         
         legend.position=c(.5,.9),
-        axis.title.y = element_blank(),
+        axis.title = element_blank(),
         legend.title=element_blank(),
         legend.background = element_rect(fill="transparent"),
         panel.grid.major.x = element_blank(),
@@ -192,7 +200,13 @@ multiplot(plotlist = myplots, cols=3,
 
 ## Printing multiplot
 
+dir.create('out', showWarnings = FALSE)
+
 png(filename = "./out/aliens.png", width=836, height=430, units="px", type = "cairo-png")
+multiplot(plotlist = myplots, cols=3, widths = c(.5, 2, .44))
+dev.off()
+
+svg_px(file = "./out/aliens.svg", width=836, height=430)
 multiplot(plotlist = myplots, cols=3, widths = c(.5, 2, .44))
 dev.off()
 
