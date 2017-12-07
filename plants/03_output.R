@@ -82,6 +82,15 @@ png(filename = "./out/plant.viz.png", width = 900, height = 430, units = "px")
 multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
 dev.off()
 
+png_retina(filename = "./out/plant.viz.retina.png", width = 900, height = 430, units = "px")
+multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
+dev.off()
+
+## resulting filesize too big
+# svg_px(file = "./out/plant.viz.svg", width = 900, height = 430)
+# multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
+# dev.off()
+
 ## Crunching some more numbers for the indicator page
 
 ## number of unique species and frequency
