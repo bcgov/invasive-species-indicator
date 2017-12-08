@@ -39,9 +39,10 @@ map_theme <-   theme(axis.title = element_blank(),
                      axis.ticks = element_blank(),
                      panel.grid = element_blank(),
                      legend.position = c(.2, .2),
+                     legend.text = element_text(size = 11),
                      legend.title = element_text(size = 11, 
                                                  face = "bold"),
-                     plot.margin = unit(c(0,0,20,0),"mm"), 
+                     plot.margin = unit(c(0,0,0,0),"mm"), 
                      text = element_text(family = "Verdana"))
 
 sitesmap <- ggplot(biozones.data.points) +
@@ -78,11 +79,11 @@ sppmap <- ggplot(biozones.data.points) +
 
 
 ## invasive plant chloropleth of number of occurences and number of speciesby BGC map 
-png(filename = "./out/plant.viz.png", width = 900, height = 430, units = "px")
-multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
-dev.off()
+# png(filename = "./out/plant.viz.png", width = 836, height = 430, units = "px")
+# multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
+# dev.off()
 
-png_retina(filename = "./out/plant.viz.retina.png", width = 900, height = 430, units = "px")
+png_retina(filename = "./out/plant.viz.png", width = 836, height = 430, units = "px")
 multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
 dev.off()
 
