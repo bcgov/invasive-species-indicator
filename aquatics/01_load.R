@@ -22,9 +22,9 @@
 ## EauBC units provided under BC Crown Copyright License
 ## http://www2.gov.bc.ca/gov/content/home/copyright
 
-ais_zip <- "Z:/plants_animals/invasives/2015/ais/AIS_DataBC_2015-06-12.zip" #match local data dir
-eaubc_zip <- "Z:/plants_animals/invasives/2015/EAUBC/EAUBC_EDU_DataBC.zip" #match local data dir
-fw_ecoreg <- "Z:/plants_animals/invasives/2015/EAUBC/EAUBC_FW_ECOREG.zip" #match local data dir
+ais_zip <- "~/soe_data/plants_animals/invasives/2015/ais/AIS_DataBC_2015-06-12.zip" #match local data dir
+eaubc_zip <- "~/soe_data/plants_animals/invasives/2015/EAUBC/EAUBC_EDU_DataBC.zip" #match local data dir
+fw_ecoreg <- "~/soe_data/plants_animals/invasives/2015/EAUBC/EAUBC_FW_ECOREG.zip" #match local data dir
 
 unzip(ais_zip, exdir = "aquatics/data")
 unzip(eaubc_zip, exdir = "aquatics/data")
