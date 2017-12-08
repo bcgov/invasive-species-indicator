@@ -36,7 +36,7 @@ theme_map <- function() {
           panel.border = element_blank(), 
           plot.margin = unit(c(5, 0, 5, 0), "mm"), 
           strip.background = element_blank(), 
-          strip.text = element_text(vjust = 0, hjust = 0.4, size = rel(0.9))
+          strip.text = element_text(vjust = 0, hjust = 0.4, size = rel(1.1))
     )  
 }
 
@@ -73,7 +73,10 @@ chart_facet_map <- ggplot(eaubc.df.all, aes(long, lat, group = group, fill = n_s
   geom_path(color = "white", size = 0.5) + 
   coord_equal() + 
   theme_map() + 
-  theme(legend.key.height = unit(2, "cm"))
+  theme(legend.key.height = unit(2, "cm"),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 12, 
+                                    face = "bold"))
 
 eaubc_fish_decade.df <- left_join(eaubc.df, fish_by_edu_by_decade, by = c("id" = "edu"))
 
@@ -89,7 +92,12 @@ chart_year_map <- ggplot(eaubc_fish_decade.df, aes(long, lat, group = group, fil
   ggtitle("Increase in Number and Distribution of Invasive Freshwater Fish (1900-2014)") + 
   coord_equal() + 
   theme_map() + 
-  theme(legend.key.height = unit(2, "cm"))
+  theme(legend.key.height = unit(2, "cm"),
+        plot.title = element_text(size = 14, hjust = 0.5),
+        legend.text = element_text(size = 12),
+        legend.title = element_text(size = 12, 
+                                    face = "bold"))
+
 
 ## Plot increase in fish spp over time
 ais_year_edu$edu <- with(ais_year_edu, reorder(edu, n_species, max))
@@ -125,22 +133,38 @@ chart_prov_fish_trend <- ais_year_prov %>% filter(tax_group == "Fish") %>%
   geom_line(colour = "#08519c", size = 1.5) + 
   scale_y_continuous(breaks = pretty_breaks()) + 
   labs(x = "Year", y = "Number of Known Invasive\nFreshwater Fish Species\n") + 
-  annotate("text", x = 1910, y = 28, hjust = 0, vjust = 1, size = 4.5, 
+  annotate("text", x = 1910, y = 28, hjust = 0, vjust = 1, size = 5, 
            label = "The number of invasive freshwater fish species\ndetected in B.C. has increased steadily\nsince the early 1900s") +
   theme_soe() + 
-  theme(panel.grid.major = element_blank(), axis.title.y = element_text(vjust = 0)) +
+  theme(panel.grid.major = element_blank(), axis.title.y = element_text(vjust = 0),
+        axis.title = element_text(size = 14),
+        axis.text = element_text(size = 14)) +
   add_phylopic(black_bullhead_img, ysize = 25, x = 1985, y = 9)
 
 # @knitr stop
 
-png("out/ais_edu_facet_map.png", width = 900, units = "px")
+# png("out/ais_edu_facet_map.png", width = 900, units = "px")
+# chart_facet_map
+# dev.off()
+# 
+# png("out/ais_fish_trend.png", width = 600, height = 400, units = "px", type = "cairo-png")
+# chart_prov_fish_trend
+# dev.off()
+# 
+# png("out/ais_fish_year_facet_map.png", width = 900, height = 600, units = "px")
+# chart_year_map
+# dev.off()
+
+png_retina("out/ais_edu_facet_map.png", width = 900, units = "px")
 chart_facet_map
 dev.off()
 
-png("out/ais_fish_trend.png", width = 600, height = 400, units = "px", type = "cairo-png")
+png_retina("out/ais_fish_trend.png", width = 600, height = 400, units = "px", type = "cairo-png")
 chart_prov_fish_trend
 dev.off()
 
-png("out/ais_fish_year_facet_map.png", width = 900, height = 600, units = "px")
+png_retina("out/ais_fish_year_facet_map.png", width = 900, height = 600, units = "px")
 chart_year_map
 dev.off()
+
+
