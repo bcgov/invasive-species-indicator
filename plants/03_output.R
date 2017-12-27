@@ -16,6 +16,7 @@ require(ggplot2) #plotting
 require(extrafont) #plot font
 require(envreportutils) #theme_soe
 require(grid) #
+require(dplyr) #data munging
 
 source("fun.R") #functions from fun.R
 
@@ -83,9 +84,19 @@ sppmap <- ggplot(biozones.data.points) +
 # multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
 # dev.off()
 
-png_retina(filename = "./out/plant.viz.png", width = 836, height = 430, units = "px")
-multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
+# png_retina(filename = "./out/plant.viz.png", width = 836, height = 430, units = "px")
+# multiplot(sitesmap, sppmap, cols = 2, widths = c(1, 1))
+# dev.off()
+
+
+png_retina(filename = "./out/plant.viz.sites.png", width = 500, height = 500, units = "px")
+plot(sitesmap)
 dev.off()
+
+png_retina(filename = "./out/plant.viz.spp.png", width = 500, height = 500, units = "px")
+plot(sppmap)
+dev.off()
+
 
 ## resulting filesize too big
 # svg_px(file = "./out/plant.viz.svg", width = 900, height = 430)
