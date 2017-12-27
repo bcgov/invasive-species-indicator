@@ -155,16 +155,34 @@ chart_prov_fish_trend <- ais_year_prov %>% filter(tax_group == "Fish") %>%
 # chart_year_map
 # dev.off()
 
-png_retina("out/ais_edu_facet_map.png", width = 900, units = "px")
-chart_facet_map
+svg_px("out/ais_fish_trend.svg", width = 600, height = 400)
+chart_prov_fish_trend
 dev.off()
 
-png_retina("out/ais_fish_trend.png", width = 600, height = 400, units = "px", type = "cairo-png")
-chart_prov_fish_trend
+png_retina("out/ais_edu_facet_map.png", width = 900, units = "px")
+chart_facet_map
 dev.off()
 
 png_retina("out/ais_fish_year_facet_map.png", width = 900, height = 600, units = "px")
 chart_year_map
 dev.off()
+
+## making smaller PNGs for web
+library(magick)
+# (edufacet <- image_read("out/ais_edu_facet_map.png"))
+# 
+# (edufacetsmall <- image_resize(edufacet, "1500x1500"))
+# 
+# image_write(edufacetsmall,
+#             path = "out/ais_edu_facet_map_small.png",
+#             format = "jpg")
+
+(fishyear <- image_read("out/ais_fish_year_facet_map.png"))
+
+(fishyearsmall <- image_resize(fishyear, "2000x2000"))
+
+image_write(fishyearsmall,
+            path = "./out/ais_fish_year_facet_map_small.png",
+            format = "jpg")
 
 
