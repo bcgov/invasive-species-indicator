@@ -97,6 +97,22 @@ png_retina(filename = "./out/plant.viz.spp.png", width = 500, height = 500, unit
 plot(sppmap)
 dev.off()
 
+library(magick)
+(plantsites <- image_read("./out/plant.viz.sites.png"))
+
+(plantsitessmall <- image_resize(plantsites, "1000x1000"))
+
+image_write(plantsitessmall,
+            path = "./out/plant.viz.sites.small.png",
+            format = "jpg")
+
+(plantspp <- image_read("./out/plant.viz.spp.png"))
+
+(plantsppsmall <- image_resize(plantspp, "1000x1000"))
+
+image_write(plantsppsmall,
+            path = "./out/plant.viz.spp.small.png",
+            format = "jpg")
 
 ## resulting filesize too big
 # svg_px(file = "./out/plant.viz.svg", width = 900, height = 430)
