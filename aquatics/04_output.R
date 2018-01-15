@@ -168,7 +168,7 @@ chart_year_map
 dev.off()
 
 ## making smaller PNGs for web
-library(magick)
+# library(magick)
 # (edufacet <- image_read("out/ais_edu_facet_map.png"))
 # 
 # (edufacetsmall <- image_resize(edufacet, "1500x1500"))
@@ -176,13 +176,13 @@ library(magick)
 # image_write(edufacetsmall,
 #             path = "out/ais_edu_facet_map_small.png",
 #             format = "jpg")
-
-(fishyear <- image_read("out/ais_fish_year_facet_map.png"))
-
-(fishyearsmall <- image_resize(fishyear, "2000x2000"))
-
-image_write(fishyearsmall,
-            path = "./out/ais_fish_year_facet_map_small.png",
-            format = "jpg")
+# 
+# (fishyear <- image_read("out/ais_fish_year_facet_map.png"))
+# 
+# (fishyearsmall <- image_resize(fishyear, "2000x2000"))
+# 
+# image_write(fishyearsmall,
+#             path = "./out/ais_fish_year_facet_map_small.png",
+#             format = "jpg")
 
 
